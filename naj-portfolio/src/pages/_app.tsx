@@ -2,6 +2,7 @@ import { AppProps } from 'next/app';
 import { MantineProvider, ColorSchemeScript } from '@mantine/core';
 import '@mantine/core/styles.css';
 import { useLocalStorage } from '@mantine/hooks';
+import Layout from '../components/Layout';
 
 export default function App({ Component, pageProps }: AppProps) {
   const [colorScheme, setColorScheme] = useLocalStorage<'light' | 'dark'>({
@@ -17,11 +18,9 @@ export default function App({ Component, pageProps }: AppProps) {
     <>
       <ColorSchemeScript defaultColorScheme="light" />
       <MantineProvider defaultColorScheme={colorScheme}>
-        <Component
-          {...pageProps}
-          colorScheme={colorScheme}
-          toggleColorScheme={toggleColorScheme}
-        />
+        <Layout>
+          <Component {...pageProps} toggleColorScheme={toggleColorScheme} />
+        </Layout>
       </MantineProvider>
     </>
   );
