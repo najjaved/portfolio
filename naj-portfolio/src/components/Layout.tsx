@@ -1,5 +1,7 @@
-import { useMantineColorScheme, Button, Container, Flex, Title, Text } from '@mantine/core';
+// components/Layout.tsx
+import { Button, Container, Flex, Title } from '@mantine/core';
 import Link from 'next/link';
+import { useMantineColorScheme } from '@mantine/core';
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   const { colorScheme, toggleColorScheme } = useMantineColorScheme();
@@ -19,7 +21,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         <Title order={3} style={{ color: isDark ? '#fff' : '#000' }}>
           My Portfolio
         </Title>
-        <Flex>
+        <Flex gap="sm">
           <Link href="/" passHref>
             <Button variant="subtle" style={{ color: isDark ? '#fff' : '#000' }}>
               Home
@@ -31,7 +33,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
             </Button>
           </Link>
           <Button
-            onClick={() => toggleColorScheme()}
+            onClick={toggleColorScheme}
             variant="outline"
             style={{ color: isDark ? '#fff' : '#000' }}
           >
@@ -41,9 +43,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
       </Flex>
 
       <main>
-        <Container style={{ paddingTop: '2rem' }}>
-          {children}
-        </Container>
+        <Container style={{ paddingTop: '2rem' }}>{children}</Container>
       </main>
     </>
   );
